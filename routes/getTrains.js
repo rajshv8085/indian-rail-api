@@ -148,7 +148,7 @@ router.get("/stations", (req, res) => {
         return res.json([]);
     }
 
-    const result = stations.filter(station =>
+    const result = stations.stations.filter(station =>
 
         station.stnName
             .toLowerCase()
@@ -164,5 +164,6 @@ router.get("/stations", (req, res) => {
 
     res.json(result);
 });
+
 
 export default router;
