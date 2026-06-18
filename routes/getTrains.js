@@ -2,8 +2,11 @@ import { Router } from "express";
 import UserAgent from "user-agents";
 import Prettify from "../utils/prettify.js";
 import * as cheerio from 'cheerio';
-import stations from "../data/stations.json" assert { type: "json" };
-const prettify = new Prettify();
+import fs from "fs";
+
+const stations = JSON.parse(
+  fs.readFileSync("./data/stations.json", "utf8")
+);const prettify = new Prettify();
 const router = Router();
 
 
