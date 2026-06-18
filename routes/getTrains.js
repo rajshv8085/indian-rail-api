@@ -2,7 +2,7 @@ import { Router } from "express";
 import UserAgent from "user-agents";
 import Prettify from "../utils/prettify.js";
 import * as cheerio from 'cheerio';
-
+import stations from "../data/stations.json" assert { type: "json" };
 const prettify = new Prettify();
 const router = Router();
 
@@ -133,6 +133,31 @@ router.get("/pnrstatus",async(req,resp)=>{
   }
 
 })
+router.get("/stations", (req, res) => {
 
+    const search =
+        (req.query.search || "")
+        .toLowerCase();
+
+    if (!search) {
+        return res.json([]);
+    }
+
+    const result = stations.filter(station =>
+
+        station.stnName
+            .toLowerCase()
+            .includes(search)
+
+        ||
+
+        station.stnCode
+            .toLowerCase()
+            .includes(search)
+
+    ).slice(0, 10);
+
+    res.json(result);
+});
 
 export default router;
