@@ -4,6 +4,7 @@ import Prettify from "../utils/prettify.js";
 import * as cheerio from 'cheerio';
 import fs from "fs";
 
+
 const stations = JSON.parse(
   fs.readFileSync("./data/stations.json", "utf8")
 );const prettify = new Prettify();
